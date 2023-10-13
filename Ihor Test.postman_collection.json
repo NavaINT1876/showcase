@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "4db4ff48-906a-4c05-9691-33d2528fd3c1",
+		"name": "Nuno Ihor Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3132001"
+	},
+	"item": [
+		{
+			"name": "Generate Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3075/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3075",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TODOs List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3075/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3075",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View single TODO",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE2NzU4NTY4MDksIm5hbWUiOiJOdW5vIiwiaWF0IjoxNjc1ODU2ODA5LCJfd2VsbG93X2lzX2F3ZXNvbWVfIjp0cnVlfQ.foGz-ZSdb9vhYQcZ28oojGyyngAmm1xDisgddU-BntQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3075/api/todos/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3075",
+					"path": [
+						"api",
+						"todos",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete single TODO",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3075/api/todos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3075",
+					"path": [
+						"api",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create TODO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test2\",\n    \"description\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3075/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3075",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TODO",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE2NzU4NTY4MDksIm5hbWUiOiJOdW5vIiwiaWF0IjoxNjc1ODU2ODA5LCJfd2VsbG93X2lzX2F3ZXNvbWVfIjp0cnVlfQ.foGz-ZSdb9vhYQcZ28oojGyyngAmm1xDisgddU-BntQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test22ss2\",\n    \"description\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3075/api/todos/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3075",
+					"path": [
+						"api",
+						"todos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

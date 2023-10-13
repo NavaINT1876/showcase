@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+
+  nu-app:
+    container_name: nu-app
+    build:
+        context: .
+    ports:
+      - 3075:80
+    volumes:
+      - ./:/app:cached
+    command: /bin/bash -c /run/web.sh
+
+  nu-db:
+    container_name: nu-db
+    image: mysql:8.0
+    restart: on-failure
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: to_do_ihor
+      MYSQL_USER: nu
+      MYSQL_PASSWORD: nu
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+    volumes:
+      - nu-datavolume:/var/lib/mysql
+    ports:
+      - "11191:3306"
+
+volumes:
+  nu-datavolume:
+
+networks:
+  default:
+    name: nu_default

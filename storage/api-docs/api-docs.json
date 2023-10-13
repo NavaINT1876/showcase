@@ -1,0 +1,205 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation & Sandbox",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/token": {
+            "post": {
+                "summary": "Generates Json Web Token",
+                "operationId": "000ee606228de7f5de049cbd00c825cf",
+                "responses": {
+                    "200": {
+                        "description": "Token"
+                    }
+                }
+            }
+        },
+        "/api/todos": {
+            "get": {
+                "summary": "Get list of all TODO items",
+                "operationId": "7017537392f4174adb1fbb29bdc9f0c6",
+                "responses": {
+                    "200": {
+                        "description": "List of TODO items"
+                    },
+                    "401": {
+                        "description": "Unauthorized. No token has been provided or it was malformed."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Creates a TODO item",
+                "operationId": "42c21958aee5869f05e707501b7c59cc",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "title",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "description",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized. No token has been provided or it was malformed."
+                    },
+                    "201": {
+                        "description": "Created. Changes successfully saved."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/todos/{id}": {
+            "get": {
+                "summary": "View single TODO item",
+                "operationId": "8d0bfdbc7d3fdf9fb52d66bd833b4aa5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TODO item Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    },
+                    "401": {
+                        "description": "Unauthorized. No token has been provided or it was malformed."
+                    },
+                    "404": {
+                        "description": "Not Found. TODO item was not found in database"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Updates a TODO item",
+                "operationId": "0342f6fbeb8fbd8e9fb54992d0a0183a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TODO item Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "An integer value.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "title",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "description",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized. No token has been provided or it was malformed."
+                    },
+                    "204": {
+                        "description": "No Content. Changes successfully saved."
+                    },
+                    "404": {
+                        "description": "Not Found. TODO item was not found in database"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete single TODO item",
+                "operationId": "a937d553ead1ea70ee5793aed5674790",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "TODO item Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "Not Found. TODO item was not found in database"
+                    },
+                    "401": {
+                        "description": "Unauthorized. No token has been provided or it was malformed."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
